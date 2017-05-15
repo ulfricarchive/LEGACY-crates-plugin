@@ -13,4 +13,6 @@ public interface CrateAccount extends Unique {
 	
 	void takeKeys(Crate crate, int amount);
 	
+	boolean hasKeys(Crate crate, int amount);
+	
 }

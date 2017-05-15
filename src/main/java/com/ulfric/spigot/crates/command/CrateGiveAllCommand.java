@@ -17,10 +17,13 @@ import com.ulfric.spigot.crates.service.Crates;
 @Name("giveall")
 @Alias("ga")
 @Permission("crate-giveall")
-public class CrateGiveAllCommand extends CrateCommand {
+class CrateGiveAllCommand extends CrateCommand {
 	
 	@Argument
 	private String name;
+	
+	@Argument(optional = true)
+	private Integer amount;
 	
 	@Override
 	public void run(Context context)
@@ -31,6 +34,7 @@ public class CrateGiveAllCommand extends CrateCommand {
 		Text text = Text.getService();
 		
 		Crate crate = crates.getCrate(this.name);
+		int amount = this.amount == null ? 1 : this.amount;
 		
 		if (crate == null)
 		{
@@ -38,18 +42,18 @@ public class CrateGiveAllCommand extends CrateCommand {
 			return;
 		}
 		
-		this.giveAll(crate);
+		this.giveAll(crate, amount);
 		
 		text.sendMessage(sender, "crate-giveall",
-				CrateMetadataDefaults.LAST_CRATE_GIVE_NAME, crate.getName());
+				CrateMetadataDefaults.LAST_CRATE_NAME, crate.getName());
 	}
 	
-	private void giveAll(Crate crate)
+	private void giveAll(Crate crate, int amount)
 	{
 		Bukkit.getOnlinePlayers().forEach(player ->
 		{
 			CrateAccount account = Crates.getService().getAccount(player.getUniqueId());
-			account.addKeys(crate, 1);
+			account.addKeys(crate, amount);
 		});
 	}
 	

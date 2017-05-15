@@ -1,5 +1,9 @@
 package com.ulfric.spigot.crates.service;
 
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
+
 import com.ulfric.commons.naming.Name;
 import com.ulfric.commons.service.Service;
 import com.ulfric.commons.spigot.service.ServiceUtils;
@@ -22,10 +26,25 @@ public interface Crates extends Service {
 	
 	Crate getCrate(String name);
 	
+	Crate getCrate(Location location);
+	
+	default Crate getCrate(Block block)
+	{
+		return this.getCrate(block.getLocation());
+	}
+	
+	boolean isCrate(Location location);
+	
+	void setCrate(Crate crate, Location location);
+	
+	void removeCrate(Crate crate, Location location);
+	
 	List<Crate> getCrates();
 	
 	Reward getRandomReward(Crate crate);
 	
 	CrateAccount getAccount(UUID uniqueId);
+	
+	ItemStack getCrateBlock(Crate crate);
 	
 }

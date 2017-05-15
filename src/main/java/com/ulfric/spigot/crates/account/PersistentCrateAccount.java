@@ -66,6 +66,12 @@ public class PersistentCrateAccount implements CrateAccount {
 	}
 	
 	@Override
+	public boolean hasKeys(Crate crate, int amount)
+	{
+		return this.getKeys(crate) >= amount;
+	}
+	
+	@Override
 	public UUID getUniqueId()
 	{
 		return this.uniqueId;
