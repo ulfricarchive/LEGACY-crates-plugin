@@ -14,4 +14,13 @@
     <version>1.0.0</version>
     <name>Crates</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.ulfric.plugin</groupId>
+            <artifactId>platform</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -14,6 +14,7 @@ import com.ulfric.commons.spigot.text.Text;
 import com.ulfric.dragoon.container.Container;
 import com.ulfric.dragoon.initialize.Initialize;
 import com.ulfric.dragoon.inject.Inject;
+import com.ulfric.plugin.platform.data.PlayerData;
 import com.ulfric.spigot.crates.Crate;
 import com.ulfric.spigot.crates.Reward;
 import com.ulfric.spigot.crates.account.CrateAccount;
@@ -49,7 +50,7 @@ public class CrateService implements Crates {
 	@Initialize
 	private void initialize()
 	{
-		// todo need to set up access for player data
+		this.playerData = PlayerData.getPlayerData(this.owner).getDataStore("crates");
 		
 		this.folder = Data.getDataStore(this.owner).getDataStore("crates");
 		this.folder.loadAllData().forEach(this::loadCrate);
