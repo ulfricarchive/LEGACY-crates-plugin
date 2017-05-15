@@ -22,7 +22,7 @@ public class Reward implements Named {
 	{
 		
 		private String name;
-		private double chance;
+		private int chance;
 		private Collection<String> commands;
 		
 		Builder()
@@ -45,7 +45,7 @@ public class Reward implements Named {
 			return this;
 		}
 		
-		public Builder setChance(double chance)
+		public Builder setChance(int chance)
 		{
 			this.chance = chance;
 			return this;
@@ -62,10 +62,10 @@ public class Reward implements Named {
 	private static final String PLAYER_NAME_PLACEHOLDER = "{PLAYER_NAME}";
 	
 	private final String name;
-	private final double chance;
+	private final int chance;
 	private final List<String> commands;
 	
-	Reward(String name, double chance, Collection<String> commands)
+	Reward(String name, int chance, Collection<String> commands)
 	{
 		this.name = name;
 		this.chance = chance;
@@ -78,7 +78,7 @@ public class Reward implements Named {
 		return this.name;
 	}
 	
-	public double getChance()
+	public int getChance()
 	{
 		return this.chance;
 	}
